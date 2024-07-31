@@ -8,10 +8,5 @@ export default createVuetify({
   directives,
   icons: {
     defaultSet: 'mdi',
-    sets: {
-      mdi: {
-        component: 'mdi',
-      },
-    },
   },
 })
