@@ -1,39 +1,37 @@
 <template>
-  <div id="app">
-    <header>
-      <h1>洗濯物アプリ</h1>
-    </header>
-    <main>
-      <LaundryControl />
-    </main>
-  </div>
+  <v-app>
+    <v-app-bar app color="primary" dark>
+      <v-toolbar-title>洗濯物アプリ</v-toolbar-title>
+    </v-app-bar>
+    <v-main>
+      <v-container>
+        <LaundryControl />
+      </v-container>
+    </v-main>
+    <v-footer app color="primary" dark>
+      <span class="white--text">&copy; 2024 洗濯物アプリ</span>
+    </v-footer>
+  </v-app>
 </template>
 
 <script>
-import LaundryControl from './components/LaundryControl.vue';
+import LaundryControl from './components/LaundryControl.vue'
 
 export default {
   components: {
     LaundryControl,
   },
-};
+}
 </script>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  font-family: 'Roboto', sans-serif;
 }
 
-header {
-  background-color: #42b983;
-  padding: 20px;
-  color: white;
-}
-
-main {
-  padding: 20px;
+.v-application {
+  font-family: 'Roboto', sans-serif;
 }
 </style>
