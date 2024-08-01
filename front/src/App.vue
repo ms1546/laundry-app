@@ -1,16 +1,10 @@
 <template>
   <v-app>
-    <v-app-bar app color="primary" dark>
-      <v-toolbar-title>洗濯物アプリ</v-toolbar-title>
-    </v-app-bar>
     <v-main>
       <v-container>
         <LaundryControl />
       </v-container>
     </v-main>
-    <v-footer app color="primary" dark>
-      <span class="white--text">&copy; 2024 洗濯物アプリ</span>
-    </v-footer>
   </v-app>
 </template>
 
