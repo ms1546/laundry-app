@@ -106,28 +106,33 @@
   </v-app>
 </template>
 
-<script>
-export default {
-  data() {
-    return {
-      drawer: false,
-      completionTime: null,
-      remainingTime: null,
-      notificationMethod: null,
-      notificationMethods: ['LINE', 'Email'],
-      emailAddress: '',
-      lineId: '',
-      location: '',
-      isWashing: false,
-      laundryHistory: [
-        { id: 1, date: '2024-07-01', details: '洗濯完了 - 10:00' },
-        { id: 2, date: '2024-07-02', details: '洗濯完了 - 11:00' },
-      ],
-    };
-  },
-  methods: {
-    async startLaundry() {
-      this.isWashing = true;
+<script lang="ts">
+import { defineComponent, ref } from 'vue';
+
+interface LaundryHistory {
+  id: number;
+  date: string;
+  details: string;
+}
+
+export default defineComponent({
+  setup() {
+    const drawer = ref(false);
+    const completionTime = ref<string | null>(null);
+    const remainingTime = ref<string | null>(null);
+    const notificationMethod = ref<string | null>(null);
+    const notificationMethods = ref<string[]>(['LINE', 'Email']);
+    const emailAddress = ref<string>('');
+    const lineId = ref<string>('');
+    const location = ref<string>('');
+    const isWashing = ref(false);
+    const laundryHistory = ref<LaundryHistory[]>([
+      { id: 1, date: '2024-07-01', details: '洗濯完了 - 10:00' },
+      { id: 2, date: '2024-07-02', details: '洗濯完了 - 11:00' },
+    ]);
+
+    const startLaundry = async () => {
+      isWashing.value = true;
       try {
         const backendUrl = '';
         const response = await fetch(backendUrl, {
@@ -137,25 +142,43 @@ export default {
           },
         });
         const data = await response.json();
-        this.completionTime = data.completionTime;
-        this.remainingTime = data.remainingTime;
+        completionTime.value = data.completionTime;
+        remainingTime.value = data.remainingTime;
       } catch (error) {
         console.error('Error starting laundry:', error);
-        this.isWashing = false;
+        isWashing.value = false;
       }
-    },
-    cancelLaundry() {
-      this.isWashing = false;
-      this.completionTime = null;
-      this.remainingTime = null;
-    },
-    completeLaundry() {
-      this.isWashing = false;
-      this.completionTime = null;
-      this.remainingTime = null;
-    },
+    };
+
+    const cancelLaundry = () => {
+      isWashing.value = false;
+      completionTime.value = null;
+      remainingTime.value = null;
+    };
+
+    const completeLaundry = () => {
+      isWashing.value = false;
+      completionTime.value = null;
+      remainingTime.value = null;
+    };
+
+    return {
+      drawer,
+      completionTime,
+      remainingTime,
+      notificationMethod,
+      notificationMethods,
+      emailAddress,
+      lineId,
+      location,
+      isWashing,
+      laundryHistory,
+      startLaundry,
+      cancelLaundry,
+      completeLaundry,
+    };
   },
-};
+});
 </script>
 
 <style scoped>
