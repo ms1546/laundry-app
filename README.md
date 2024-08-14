@@ -7,4 +7,4 @@ Vue.js
 
 ## Back
 Python
-Aes SageMaker
+Aws SageMaker
