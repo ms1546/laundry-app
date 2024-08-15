@@ -1,4 +1,3 @@
-# SageMaker Estimatorを使用してトレーニングジョブを開始
 import sagemaker
 from sagemaker import get_execution_role
 
