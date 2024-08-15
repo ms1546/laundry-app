@@ -5,7 +5,6 @@ from sagemaker.serializers import JSONSerializer
 
 app = Flask(__name__)
 
-# SageMakerエンドポイントの設定
 predictor = Predictor(endpoint_name='drying-time-endpoint', serializer=JSONSerializer())
 
 @app.route('/start-laundry', methods=['POST'])
